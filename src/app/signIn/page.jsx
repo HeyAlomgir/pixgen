@@ -11,6 +11,7 @@ import {
   Label,
   TextField,
 } from "@heroui/react";
+import { GoAlertFill, GoArrowDown, GoCodeSquare, GoGitBranch, GoGoal } from "react-icons/go";
 
 export default function SignUpPage() {
   const onSubmit = async (e) => {
@@ -25,7 +26,13 @@ export default function SignUpPage() {
         callbackURL:"/"
     })
     // console.log(data,error);
+
   };
+  const handleGoogleSignin=async()=>{
+    await authClient.signIn.social({
+  provider: "google",
+});
+  }
 
   return (
     <Card className="border mx-auto w-125 py-10 mt-5">
@@ -90,6 +97,9 @@ export default function SignUpPage() {
           </Button>
         </div>
       </Form>
+      <p className="text-center">Or</p>
+
+      <Button onClick={handleGoogleSignin} variant="outline" className={`w-full `}> <GoGitBranch/> Signin with GOOGLE</Button>
     </Card>
   );
 }
